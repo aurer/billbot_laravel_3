@@ -1,0 +1,20 @@
+@layout('_templates.login')
+
+@section('pagetitle') Check your email... @endsection
+
+@section('primary')
+	<p>We sent you an email to confirm your email address.</p>
+	<p><b>Please copy the provided key and paste it into the box below</b> or click the link in the email.</p>
+	<form action="/user/reset_confirm">
+		<div class="field required">
+			{{ Form::label('hash', "Reference") }}
+			{{ Form::text('hash') }}
+		</div>
+		<div class="submit">
+			{{ Form::submit('Confirm', array('class'=>'btn')) }}
+		</div>
+	</form>
+	@if( Session::has('error') ) 
+		<p class="error">{{ Session::get('error') }}</p> 
+	@endif
+@endsection
