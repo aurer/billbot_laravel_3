@@ -16,7 +16,7 @@
 		<div class="submit">
 			{{ Form::submit('Login', array('class'=>'btn')) }}
 		</div>
-		<a href="/user/join">Sign up</a> &nbsp;|&nbsp; <a href="/user/reset">Reset password</a>
+		<a href="/user/join">Join Billbot</a> &nbsp;|&nbsp; <a href="/user/reset">Reset password</a>
 	</form>
 @else
 	<p class="logged-in">
