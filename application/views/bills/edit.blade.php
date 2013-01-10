@@ -8,22 +8,22 @@
 
 		<div class="field required">
 			{{ Form::label('title', 'Title') }}
-			{{ Form::text('title', Input::old('title') ? Input::old('title') : $bill->title  ) }}
+			{{ Form::text('title', Input::old('title', $bill->title)  ) }}
 			{{ $errors->has('title') ? $errors->first('title', '<p class="error">:message</p>') : '' }}
 		</div>
 		<div class="field">
 			{{ Form::label('amount', 'Amount') }}
-			{{ Form::text('amount', Input::old('amount') ? Input::old('amount') : $bill->amount ) }}
+			{{ Form::text('amount', Input::old('amount', $bill->amount) ) }}
 			{{ $errors->has('amount') ? $errors->first('amount', '<p class="error">:message</p>') : '' }}
 		</div>
 		<div class="field">
 			{{ Form::label('recurrence', 'Recurrence') }}
-			{{ Form::select('recurrence', array('monthly'=>'Monthly', 'yearly'=>'Yearly', 'weekly'=>'Weekly') , Input::old('recurrence') ? Input::old('recurrence') : $bill->recurrence ) }}
+			{{ Form::select('recurrence', array('monthly'=>'Monthly', 'yearly'=>'Yearly', 'weekly'=>'Weekly') , Input::old('recurrence', $bill->recurrence) ) }}
 			{{ $errors->has('recurrence') ? $errors->first('recurrence', '<p class="error">:message</p>') : '' }}
 		</div>
 		<div class="field required">
 			{{ Form::label('renews_on', 'Renews on') }}
-			{{ Form::text('renews_on', $bill->renews_on, array('placeholder'=>'e.g. Saturday or 25th April')) }}
+			{{ Form::text('renews_on', Input::get('renews_on', $bill->renews_on), array('placeholder'=>'e.g. Saturday or 25th April')) }}
 			{{ $errors->has('renews_on') ? $errors->first('amount', '<p class="error">:message</p>') : '' }}
 		</div>
 		<div class="field checkbox">
@@ -38,12 +38,12 @@
 		</div>
 		<div class="field">
 			{{ Form::label('reminder', 'Remind me this many days before') }}
-			{{ Form::input('number', 'reminder', Input::old('reminder') ? Input::old('reminder') : $bill->reminder )}}
+			{{ Form::input('number', 'reminder', Input::old('reminder', $bill->reminder) )}}
 			{{ $errors->has('reminder') ? $errors->first('reminder', '<p class="error">:message</p>') : '' }}
 		</div>
 		<div class="field">
 			{{ Form::label('comments', 'Comments') }}
-			{{ Form::textarea('comments', Input::old('comments') ? Input::old('comments') : $bill->comments ) }}
+			{{ Form::textarea('comments', Input::old('comments', $bill->comments) ) }}
 			{{ $errors->has('comments') ? $errors->first('comments', '<p class="error">:message</p>') : '' }}
 		</div>
 
