@@ -1,6 +1,5 @@
 @include('_includes/head')
 <body class="login">
-	<canvas id="canvas"></canvas>
 	<div class="page">
 		<div class="main">
 			<div class="login-form">
