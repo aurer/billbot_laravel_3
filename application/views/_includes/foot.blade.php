@@ -3,4 +3,5 @@
 	<p class="author right"><a target="_blank" href="http://aurer.co.uk">Aurer</a></p>
 	{{ Asset::scripts() }}
 	@yield('footer')
+	{{ google_analytics() }}
 </div>
