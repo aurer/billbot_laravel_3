@@ -1,4 +1,4 @@
-@layout('_templates.login')
+@layout('_templates.form-page')
 
 @section('pagetitle') Forgotten password @endsection
 
