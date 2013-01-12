@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
-You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="30px" height="30px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<path id="x-mark-4-icon" d="M462,256c0,113.771-92.229,206-206,206S50,369.771,50,256S142.229,50,256,50S462,142.229,462,256z
-	 M422,256c0-91.755-74.258-166-166-166c-91.755,0-166,74.259-166,166c0,91.755,74.258,166,166,166C347.755,422,422,347.741,422,256z
-	 M325.329,362.49l-67.327-67.324l-67.329,67.332l-36.164-36.186l67.314-67.322l-67.321-67.317l36.185-36.164l67.31,67.301
-	l67.3-67.309l36.193,36.17l-67.312,67.315l67.32,67.31L325.329,362.49z"/>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="94px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<path id="x-mark-4-icon" d="M27.07,15c0,6.666-5.404,12.07-12.07,12.07C8.333,27.07,2.93,21.666,2.93,15S8.333,2.93,15,2.93
+	C21.666,2.93,27.07,8.334,27.07,15z M24.727,15c0-5.376-4.352-9.727-9.727-9.727c-5.376,0-9.727,4.351-9.727,9.727
+	c0,5.377,4.351,9.727,9.727,9.727C20.377,24.727,24.727,20.375,24.727,15z M19.062,21.24l-3.945-3.945l-3.945,3.945l-2.119-2.12
+	l3.944-3.945l-3.945-3.944l2.12-2.119l3.944,3.943l3.943-3.944l2.121,2.119l-3.945,3.944l3.945,3.944L19.062,21.24z"/>
+<path id="x-mark-4-icon_1_" fill="#FFFFFF" d="M27.07,45c0,6.666-5.404,12.07-12.07,12.07C8.333,57.07,2.93,51.666,2.93,45
+	S8.333,32.93,15,32.93C21.666,32.93,27.07,38.334,27.07,45z M24.727,45c0-5.377-4.352-9.727-9.727-9.727
+	c-5.376,0-9.727,4.352-9.727,9.727c0,5.377,4.351,9.727,9.727,9.727C20.377,54.727,24.727,50.375,24.727,45z M19.062,51.24
+	l-3.945-3.945l-3.945,3.945l-2.119-2.12l3.944-3.944L9.053,41.23l2.12-2.119l3.944,3.943l3.943-3.943l2.121,2.119l-3.945,3.944
+	l3.945,3.944L19.062,51.24z"/>
 </svg>

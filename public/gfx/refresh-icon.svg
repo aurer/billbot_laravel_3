@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
-You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="18px" height="18px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-<path id="refresh-2-icon" d="M183.744,101.151c-52.797,32.74-83.033,87.956-85.97,145.633H50l76.603,76.985l76.986-76.985H156.26
-	c2.801-38.193,23.215-74.296,58.249-96.021c58.121-36.042,134.456-18.141,170.497,39.98
-	c36.041,58.122,18.142,134.456-39.979,170.496c-53.189,32.983-121.625,20.784-160.481-26.069l-41.038,41.82
-	c57.759,65.206,155.749,81.321,232.284,33.861c85.522-53.032,111.86-165.352,58.827-250.874
-	C381.586,74.457,269.267,48.119,183.744,101.151z"/>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="18px" height="60px" viewBox="0 0 18 18" enable-background="new 0 0 18 18" xml:space="preserve">
+<path id="refresh-2-icon" d="M6.46,3.556c-1.856,1.151-2.919,3.092-3.022,5.12h-1.68l2.693,2.707l2.707-2.707H5.494
+	C5.592,7.333,6.31,6.064,7.542,5.3c2.042-1.267,4.726-0.638,5.994,1.406c1.268,2.043,0.639,4.727-1.405,5.993
+	c-1.87,1.16-4.276,0.731-5.642-0.916l-1.442,1.471c2.03,2.292,5.475,2.858,8.166,1.189c3.008-1.863,3.934-5.812,2.068-8.819
+	C13.415,2.618,9.466,1.692,6.46,3.556z"/>
+<path id="refresh-2-icon_1_" fill="#FFFFFF" d="M6.46,23.557c-1.856,1.15-2.919,3.092-3.022,5.119h-1.68l2.693,2.707l2.707-2.707
+	H5.494c0.098-1.343,0.816-2.611,2.048-3.375c2.042-1.268,4.726-0.639,5.994,1.405c1.268,2.043,0.639,4.727-1.405,5.993
+	c-1.87,1.16-4.276,0.731-5.642-0.916l-1.442,1.471c2.03,2.292,5.475,2.858,8.166,1.189c3.008-1.863,3.934-5.812,2.068-8.819
+	C13.415,22.617,9.466,21.691,6.46,23.557z"/>
 </svg>

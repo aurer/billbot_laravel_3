@@ -44,11 +44,11 @@ input,
 select,
 textarea {
   font-family: "Helvetica neue", Helvetica, sans-serif;
-  color: #111111;
+  color: #ffffff;
 }
 ::-moz-selection {
   background: #333;
-  color: #ffffff;
+  color: #00ddff;
   text-shadow: none;
 }
 ::selection {
@@ -59,14 +59,14 @@ textarea {
 /* links
 ======================================== */
 a {
-  color: #ffffff;
+  color: #00ddff;
   text-decoration: none;
 }
 a:visited {
   font-style: italic;
 }
 a:hover {
-  color: #000000;
+  color: #ffffff;
 }
 a:focus {
   outline: thin dotted;
@@ -97,7 +97,7 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 2px solid #000;
+  border-top: 2px solid #fff;
   margin: 1em 0;
   padding: 0;
 }
@@ -177,7 +177,7 @@ h1,
 h2,
 h3 {
   font-family: "Helvetica neue", Helvetica, sans-serif;
-  color: #000000;
+  color: #ffffff;
   font-weight: normal;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   margin: 1em 0 .4em;
