@@ -8,7 +8,9 @@
 	<form action="/user/confirm">
 		<div class="field required">
 			{{ Form::label('hash', "Reference") }}
-			{{ Form::text('hash') }}
+			<div class="input">
+				{{ Form::text('hash') }}
+			</div>
 		</div>
 		<div class="submit">
 			{{ Form::submit('Confirm', array('class'=>'btn')) }}

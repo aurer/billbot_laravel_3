@@ -12,7 +12,9 @@
 
 		<div class="field required">
 			{{ Form::label('email', 'Email') }}
-			{{ Form::text('email', Input::old('email')) }}
+			<div class="input">
+				{{ Form::text('email', Input::old('email')) }}
+			</div>
 			{{ $errors->has('email') ? $errors->first('email', '<p class="error">:message</p>') : '' }}
 		</div>
 

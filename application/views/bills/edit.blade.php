@@ -8,42 +8,65 @@
 
 		<div class="field required">
 			{{ Form::label('title', 'Title') }}
-			{{ Form::text('title', Input::old('title', $bill->title)  ) }}
+			<div class="input">
+				{{ Form::text('title', Input::old('title', $bill->title)  ) }}
+			</div>
 			{{ $errors->has('title') ? $errors->first('title', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field">
 			{{ Form::label('amount', 'Amount') }}
-			{{ Form::text('amount', Input::old('amount', $bill->amount) ) }}
+			<div class="input">
+				{{ Form::text('amount', Input::old('amount', $bill->amount) ) }}
+			</div>
 			{{ $errors->has('amount') ? $errors->first('amount', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field">
 			{{ Form::label('recurrence', 'Recurrence') }}
-			{{ Form::select('recurrence', array('monthly'=>'Monthly', 'yearly'=>'Yearly', 'weekly'=>'Weekly') , Input::old('recurrence', $bill->recurrence) ) }}
+			<div class="input">
+				{{ Form::select('recurrence', array('monthly'=>'Monthly', 'yearly'=>'Yearly', 'weekly'=>'Weekly') , Input::old('recurrence', $bill->recurrence) ) }}
+			</div>
 			{{ $errors->has('recurrence') ? $errors->first('recurrence', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field required">
 			{{ Form::label('renews_on', 'Renews on') }}
-			{{ Form::text('renews_on', Input::get('renews_on', $bill->renews_on), array('placeholder'=>'e.g. Saturday or 25th April')) }}
+			<div class="input">
+				{{ Form::text('renews_on', Input::get('renews_on', $bill->renews_on), array('placeholder'=>'e.g. Saturday or 25th April')) }}
+			</div>
 			{{ $errors->has('renews_on') ? $errors->first('amount', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field checkbox">
 			{{ Form::label('send_reminder', 'Send reminder?') }}
-			{{ Form::checkbox('send_reminder', 'true', $bill->send_reminder ? true : false )}}
+			<div class="input">
+				{{ Form::checkbox('send_reminder', 'true', $bill->send_reminder ? true : false )}}
+			</div>
 			{{ $errors->has('send_reminder') ? $errors->first('send_reminder', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field checkbox">
 			{{ Form::label('include_in_totals', 'Include in totals?') }}
-			{{ Form::checkbox('include_in_totals', 'true', $bill->include_in_totals ? true : false )}}
+			<div class="input">
+				{{ Form::checkbox('include_in_totals', 'true', $bill->include_in_totals ? true : false )}}
+			</div>
 			{{ $errors->has('include_in_totals') ? $errors->first('include_in_totals', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field">
 			{{ Form::label('reminder', 'Remind me this many days before') }}
-			{{ Form::input('number', 'reminder', Input::old('reminder', $bill->reminder) )}}
+			<div class="input">
+				{{ Form::input('number', 'reminder', Input::old('reminder', $bill->reminder) )}}
+			</div>
 			{{ $errors->has('reminder') ? $errors->first('reminder', '<p class="error">:message</p>') : '' }}
 		</div>
+
 		<div class="field">
 			{{ Form::label('comments', 'Comments') }}
-			{{ Form::textarea('comments', Input::old('comments', $bill->comments) ) }}
+			<div class="input">
+				{{ Form::textarea('comments', Input::old('comments', $bill->comments) ) }}
+			</div>
 			{{ $errors->has('comments') ? $errors->first('comments', '<p class="error">:message</p>') : '' }}
 		</div>
 

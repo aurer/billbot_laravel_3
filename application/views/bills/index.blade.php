@@ -1,6 +1,6 @@
 @layout('_templates.default')
 
-@section('pagetitle') Your Bills <a class="icon-with-text add" href="/bills/new">Add one</a> @endsection
+@section('pagetitle') Your Bills <a class="icon-with-text add" href="/bills/new">New</a> @endsection
 
 @section('primary')
 	
@@ -10,8 +10,8 @@
 				<div class="title">
 					<h3>{{ $item->title }} </h3>
 					<span class="actions">
-						<a title="Edit" class="img-icon" href="/bills/edit/{{ $item->name }}"><img src="/gfx/edit-icon.svg" alt="Edit"></a>
-						<a title="Delete" class="img-icon" href="/bills/delete/{{ $item->id }}"><img src="/gfx/delete-icon.svg" alt="Edit"></a>
+						<a title="Edit this bill" class="icon-with-text edit" href="/bills/edit/{{ $item->name }}">Edit</a>
+						<a title="Remove this bill" class="icon-with-text delete" href="/bills/delete/{{ $item->id }}">Remove</a>
 					</span>
 				</div>
 				<table class="bill-details">
