@@ -37,4 +37,5 @@ return array(
 	'docs' => array('handles' => 'docs'),
 	'bob' => array('auto' => 'true'),
 	'google_analytics' => array('auto' => 'true'),
+	'autoschema' => array('handles' => 'autoschema'),
 );
