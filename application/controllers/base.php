@@ -23,7 +23,7 @@ class Base_Controller extends Controller {
 	 * Return a ISO standard date version of the next renewal date
 	 *
 	 */
-	public function renewal_date_to_date($type, $date)
+	public static function renewal_date_to_date($type, $date)
 	{
 		$from_format['weekly'] 	= 'd-M-Y';
 		$from_format['monthly'] = 'd';
@@ -50,11 +50,11 @@ class Base_Controller extends Controller {
 	 * Sort an array of bill objects by their renewal date and add that date to the object	 *
 	 *
 	 */
-	function sort_bills_by_date($bills)
+	public static function sort_bills_by_date($bills)
 	{
 		uasort($bills, function($a, $b){
-			$a_date = $this->renewal_date_to_date($a->recurrence, $a->renews_on);
-			$b_date = $this->renewal_date_to_date($b->recurrence, $b->renews_on);
+			$a_date = self::renewal_date_to_date($a->recurrence, $a->renews_on);
+			$b_date = self::renewal_date_to_date($b->recurrence, $b->renews_on);
 			
 			$a->renewal_date = $a_date;
 			$b->renewal_date = $b_date;
