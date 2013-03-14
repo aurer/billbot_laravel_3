@@ -8,7 +8,7 @@ Route::get('(:bundle)', function()
 	AutoSchema::load_definitions();
 	$data['tables'] = AutoSchema::check_tables();
 	$data['views'] = AutoSchema::check_views();
-	return View::make('autoschema::autoschema/index')->with($data);
+	return View::make('autoschema::index')->with($data);
 });
 
 /*
@@ -43,7 +43,7 @@ Route::get('(:bundle)/drop_table/(:any)', function($table)
 */
 Route::get('(:bundle)/drop_view/(:any)', function($view)
 {
-	$result = AutoSchema::drop_table($view);
+	$result = AutoSchema::drop_view($view);
 	return Redirect::back();
 });
 
@@ -64,3 +64,25 @@ Route::get('(:bundle)/update_view/(:any)', function($view)
 	$result = AutoSchema::update_view($view);
 	return Redirect::back();
 });
+
+/*
+	View Backups
+*/
+Route::get('(:bundle)/backups', function()
+{	
+	//dd( AutoBackup::backup('bills') );
+	dd( AutoBackup::restore('bills') );
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

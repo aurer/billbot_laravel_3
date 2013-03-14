@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<title>AutoSchema:@yield('pagetitle')</title>
 	<meta name="viewport" content="width=device-width">
-	{{ HTML::style('/autoschema-theme/css/main.css') }}
+	{{ HTML::style('bundles/autoschema/css/main.css') }}
 </head>
 <body>
 	<div class="page">
@@ -13,7 +13,7 @@
 			<div class="col">
 				<div class="cell">
 					<h1>AutoSchema</h1>
-					<h2>A Laravel Database Management Library</h2>
+					<h2>A Database Management Library for the Laravel framework</h2>
 				</div>
 			</div>
 		</header>
