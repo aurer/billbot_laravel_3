@@ -1,7 +1,7 @@
 @if( !Auth::check() )
 	<form action="" class="login clearfix" method="post">
 		<div class="field required clearfix">
-			{{ Form::label('__username', 'Email') }}
+			{{ Form::label('__username', 'Username') }}
 			{{ Form::input('text', '__username', Input::old('__username')) }}
 		</div>
 		<div class="field required clearfix">
@@ -14,19 +14,20 @@
 			</div>
 		@endif
 		<div class="submit">
-			{{ Form::submit('Login', array('class'=>'btn')) }}
+			<button type="submit" class="btn"><i class="icon-">&#xf0a9;</i> Login</button>
 		</div>
-		<a class="btn btn-sub" href="/user/join">Join Billbot</a> <a class="btn btn-sub" href="/user/reset">Reset password</a>
+		<a class="btn btn-sub" href="/user/join">Sign up</a>
+		<p><small><a class="small" href="/user/reset">Reset password</a></small></p>
 	</form>
 @else
 	<p class="logged-in">
-		<a class="icon-with-text user" title="Logged in" href="/user">
+		<a class="icon user" title="Logged in" href="/user"><i class="icon-">&#xf013;</i>
 			@if( Auth::user()->forename ) 
 				{{ Auth::user()->forename }} {{ Auth::user()->surname }}
 			@else
 				{{ Auth::user()->username }}
 			@endif
 		</a>
-		<a class="icon-with-text logout" href="?logout=true">Logout</a>
+		<a class="icon logout" href="?logout=true"><i class="icon-">&#xf08b;</i> Logout</a>
 </p>
 @endif

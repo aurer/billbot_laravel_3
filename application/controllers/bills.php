@@ -36,22 +36,6 @@ class Bills_Controller extends Base_Controller
 		return View::make('bills.index')->with($data);
 	}
 
-	public function get_upcoming()
-	{
-		$bills = Auth::user()->bill()->get();
-		
-		$data['bills'] = $this->sort_bills_by_date($bills);
-		
-		foreach ($data['bills'] as $bill) {
-			$date2 = new DateTime($bill->renewal_date);
-			$date1 = new DateTime(date("Y-m-d"));
-			$interval = $date1->diff($date2);
-			$bill->due_in = $interval->format('%a');
-		}
-
-		return View::make('bills.upcoming')->with($data);
-	}
-
 	public function get_new()
 	{
 		Asset::add('bill-forms', 'js/bill-forms.js', 'jquery');

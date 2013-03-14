@@ -1,6 +1,6 @@
 @layout('_templates.default')
 
-@section('pagetitle') Your Bills <a class="icon-with-text add" href="/bills/new">New</a> @endsection
+@section('pagetitle') Your Bills <a class="icon add" href="/bills/new"><i class="icon-">&#xf055;</i> New</a> @endsection
 
 @section('primary')
 	
@@ -10,27 +10,30 @@
 				<div class="title">
 					<h3>{{ $item->title }} </h3>
 					<span class="actions">
-						<a title="Edit this bill" class="icon-with-text edit" href="/bills/edit/{{ $item->name }}">Edit</a>
-						<a title="Remove this bill" class="icon-with-text delete" href="/bills/delete/{{ $item->id }}">Remove</a>
+						<a title="Edit this bill" href="/bills/edit/{{ $item->name }}"><i class="icon-">&#xf040;</i> Edit</a>
+						<a title="Remove this bill" href="/bills/delete/{{ $item->id }}"><i class="icon-">&#xf057;</i> Remove</a>
 					</span>
 				</div>
+				<h4>
+					Due in {{ $item->due_in }} days
+					@if( $item->send_reminder )
+						<small> - Reminder
+							@if($item->reminder == 0)
+								today</small>
+							@else
+								in {{ $item->due_in - $item->reminder }} {{ Str::plural('day', $item->due_in - $item->reminder) }}
+							@endif
+						</small>
+					@endif
+				</h4>
 				<table class="bill-details">
 					<tbody>
 						<tr>
 							<td title="Charge" class="cost"><b>&pound;{{ $item->amount }}</b></td>
 							<td title="Recurrence" class="recurrence">{{ Str::title($item->recurrence) }}</td>
 							<td title="Next due date" class="due">
-								{{ format_renewal_date($item->recurrence, $item->renews_on) }}
+								Due: {{ date('D jS F', strtotime($item->renewal_date)) }}
 							</td>
-							@if( $item->send_reminder )
-								<td title="A reminder will be sent by email" class="remider">Remind 
-									@if($item->reminder == 0)
-										on the day
-									@else
-										{{ $item->reminder }} {{ Str::plural('day', $item->reminder) }} before
-									@endif
-								</td>
-							@endif
 						</tr>
 					</tbody>
 				</table>
