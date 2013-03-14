@@ -342,6 +342,8 @@ class AutoSchema
 		$definitions = Cache::get('autoschema_definitions');
 		if( is_array($definitions) ){
 			$result = new \stdClass;
+			$result->views = array();
+			$result->tables = array();
 			foreach ($definitions as $key => $value) {
 				if( get_class($value) === 'AutoSchema\View' ){
 					$result->views[$key ] = $value;
