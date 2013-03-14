@@ -53,8 +53,8 @@ class Base_Controller extends Controller {
 	public static function sort_bills_by_date($bills)
 	{
 		uasort($bills, function($a, $b){
-			$a_date = self::renewal_date_to_date($a->recurrence, $a->renews_on);
-			$b_date = self::renewal_date_to_date($b->recurrence, $b->renews_on);
+			$a_date = Base_Controller::renewal_date_to_date($a->recurrence, $a->renews_on);
+			$b_date = Base_Controller::renewal_date_to_date($b->recurrence, $b->renews_on);
 			
 			$a->renewal_date = $a_date;
 			$b->renewal_date = $b_date;
