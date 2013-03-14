@@ -1,6 +1,7 @@
 <?php
 	Asset::add('main', 'css/compiled/main.css');
-	Asset::add('jquery', 'http://code.jquery.com/jquery.min.js');
+	Asset::add('font-awesome', 'font-awesome/css/font-awesome.min.css');
+	Asset::add('jquery', 'js/jquery-1.8.0.min.js');
 ?>
 <!doctype html>
 <html lang="en">
