@@ -19,6 +19,15 @@ class Bills_Controller extends Base_Controller
 		$data['totals']['per_month_plus']	= $data['totals']['per_month'] + ($data['totals']['yearly'] / 12)	;
 		$data['totals']['per_year'] 		= ($data['totals']['per_month'] * 12) + ($data['totals']['yearly'])	;
 		
+		// Sort bills by due date and add 'due_in'
+		$data['bills'] = $this->sort_bills_by_date($data['bills']);
+		foreach ($data['bills'] as $bill) {
+			$date2 = new DateTime($bill->renewal_date);
+			$date1 = new DateTime(date("Y-m-d"));
+			$interval = $date1->diff($date2);
+			$bill->due_in = $interval->format('%a');
+		}
+
 		// Format the totals e.g. 00.00
 		foreach ($data['totals'] as $key => $val) {
 			$data['totals'][$key] = number_format($val, 2);
@@ -27,8 +36,25 @@ class Bills_Controller extends Base_Controller
 		return View::make('bills.index')->with($data);
 	}
 
+	public function get_upcoming()
+	{
+		$bills = Auth::user()->bill()->get();
+		
+		$data['bills'] = $this->sort_bills_by_date($bills);
+		
+		foreach ($data['bills'] as $bill) {
+			$date2 = new DateTime($bill->renewal_date);
+			$date1 = new DateTime(date("Y-m-d"));
+			$interval = $date1->diff($date2);
+			$bill->due_in = $interval->format('%a');
+		}
+
+		return View::make('bills.upcoming')->with($data);
+	}
+
 	public function get_new()
 	{
+		Asset::add('bill-forms', 'js/bill-forms.js', 'jquery');
 		return View::make('bills.new');
 	}
 
@@ -81,6 +107,7 @@ class Bills_Controller extends Base_Controller
 
 	public function get_edit($name=null)
 	{
+		Asset::add('bill-forms', 'js/bill-forms.js', 'jquery');
 		$data = Auth::user()->bill()->where_name($name)->first();
 		if(!$data) return Response::error('404');
 		return View::make('bills.edit')->with('bill', $data);

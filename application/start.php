@@ -226,12 +226,40 @@ Form::macro('dateselect', function($name, $value=null){
 	return $str;
 });
 
-function format_renewal_date($type, $date)
+function renewal_date_for_display($type, $date)
 {
 	
 	$to_format['weekly'] 	= 'l jS';
 	$to_format['monthly'] 	= 'jS M';
 	$to_format['yearly'] 	= 'jS M Y';
+
+	$from_format['weekly'] 	= 'd-M-Y';
+	$from_format['monthly'] = 'd';
+	$from_format['yearly'] 	= 'z';
+
+	$interval['weekly'] 	= 'P7D';
+	$interval['monthly'] 	= 'P1M';
+	$interval['yearly'] 	= 'P1Y';
+
+	if($type==='weekly'){
+		$day = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+		$date = date('d-M-Y', strtotime($day[$date]));
+	}	
+
+	$datetime = DateTime::createFromFormat($from_format[$type], $date);
+
+	if( $datetime->format('Y-m-d') < date('Y-m-d') ) {
+		$datetime->add( new DateInterval($interval[$type]) );
+	}
+	return $datetime->format($to_format[$type]);
+}
+
+function renewal_date_for_input($type, $date)
+{
+	
+	$to_format['weekly'] 	= 'l';
+	$to_format['monthly'] 	= 'jS';
+	$to_format['yearly'] 	= 'jS M';
 
 	$from_format['weekly'] 	= 'd-M-Y';
 	$from_format['monthly'] = 'd';
