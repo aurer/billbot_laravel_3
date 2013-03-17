@@ -44,29 +44,25 @@ class Notify_Task{
 
     private function build_emails()
     {
+        Request::set_env('local');
+
+        DB::table('users')->get();
+        return; 
+
         // Loop over the users
         $this->users = DB::table('users')->get();
         foreach ($this->users as $user) {
 
             // Find available bills for the user
-            $bills = DB::table('bills')
-            ->where_user_id($user->id)
-            ->where_send_reminder(true)
-            ->where(function($group1){
-                $group1->where(function($query){
-                    $query->where('recurrence', '=', 'weekly');
-                    $query->where(DB::raw('(renews_on - send_reminder)'), '=', date('N'));
-                })->or_where(function($query){
-                    $query->where('recurrence', '!=', 'weekly');
-                    $query->where(DB::raw('(renews_on - send_reminder) '), '=', date('z')+1); // Add 1 to date to compensate for 0 based day of year in PHP
-                });
-            })
-            ->get();
+            $bills = DB::table('bills')->where_user_id(1)->where_send_reminder(true)->get();
+            
+            // Sort bills by due date and add 'due_in'
+            $bills = Bill::sort_bills_by_date($bills);
 
             // Build the email
             $name = $user->forename ? $user->forename." ".$user->surname : $user->username;
             $to = "{$name} <{$user->email}>";
-            $subject = "Dotification from Dibbs";
+            $subject = "Notification from BIllbot";
              $message = "Hi there,\n\n";
             $message .= "It looks like you have " . count($bills) . " " . Str::plural('bill', count($bills)) . " coming up:\n\n";
             

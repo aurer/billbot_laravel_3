@@ -20,7 +20,7 @@ class Bills_Controller extends Base_Controller
 		$data['totals']['per_year'] 		= ($data['totals']['per_month'] * 12) + ($data['totals']['yearly'])	;
 		
 		// Sort bills by due date and add 'due_in'
-		$data['bills'] = $this->sort_bills_by_date($data['bills']);
+		$data['bills'] = Bill::sort_bills_by_date($data['bills']);
 		foreach ($data['bills'] as $bill) {
 			$date2 = new DateTime($bill->renewal_date);
 			$date1 = new DateTime(date("Y-m-d"));
