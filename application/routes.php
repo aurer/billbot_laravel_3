@@ -6,18 +6,20 @@
 |--------------------------------------------------------------------------
 */
 
-Route::controller( Controller::detect() );
-
-if( Auth::check() ){
-	Route::get('/', 'bills@index');
-} else {
-	Route::get('/', 'home@index');
+// Require Auth unless being run from the CLI
+if( !Request::cli() ){
+	if( Auth::check() ){
+		Route::get('/', 'bills@index');
+	} else {
+		Route::get('/', 'home@index');
+	}
 }
 
 Route::get('login', function(){
 	return View::make('user.login');
 });
 
+Route::controller( Controller::detect() );
 
 /*
 |--------------------------------------------------------------------------
