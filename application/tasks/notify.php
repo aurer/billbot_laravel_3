@@ -9,78 +9,85 @@ class Notify_Task{
     public function run($arguments)
     {
         echo "Checking for bills...\n";
-        $emails = $this->build_emails();
+        $this->get_users_with_bills();
         echo "Found " . count($this->users) . " users.\n";
         echo "Found " . count($this->emails) . " reminders to send.\n";
         
     	// Send an email if there are any availiable bills for this user
-        if( count($this->emails) > 0 ){
-            
-                foreach($this->emails as $email){
-                    $headers  = "From: " . $this->from . "\r\n"; 
-                    $headers .= "Content-type: text/html\r\n";
-                    $h1 = "Just a little reminder";
-                    $h2 = "Here are you upcoming bills";
-                    $message = View::make('emails.reminder')->with( array('bills'=>$this->emails, 'message'=>$email['message'], 'h1'=>$h1, 'h2'=>$h2));
-                    mail($email['to'], $email['subject'], $message, $headers);
+        if( count($this->emails) > 0 ){            
+            foreach($this->emails as $email){
+                $headers  = "From: " . $this->from . "\r\n"; 
+                $headers .= "Content-type: text/html\r\n";
+                $h1 = "Just a little reminder";
+                $h2 = "Here are you upcoming bills";
+                $to = "{$email->forename} {$email->surname} <{$email->email}>";
+                $subject = "Notification from Billbot";
+                $message = View::make('emails.reminder')->with( array('user'=>$email));
+                $send = mail($to, $subject, $message, $headers);
+                if( $send ){
+                    echo "Sent " . count($this->emails) . " " . Str::plural('notification email', count($this->emails)) . " to " . $to . ".\n";
+                } else {
+                    echo "Failed to send message to " . $to;
                 }
-                echo "Sent " . count($this->emails) . " " . Str::plural('notification email', count($this->emails)) . ".\n";
+            }
         }
     }
 
     public function preview()
     {
         echo "Checking for bills...\n";
-        $emails = $this->build_emails();
+        $emails = $this->get_users_with_bills();
         echo "Found " . count($this->users) . " users.\n";
-        echo "Found " . count($this->emails) . " bills to send.\n";
+        echo "Found " . count($this->emails) . " notfications to send.\n";
         foreach ($this->emails as $mail) {
             echo "------------------------------------\n\n";
-            echo "To: " . $mail['to'] . "\n";
-            echo "Subject: " . $mail['subject'] . "\n";
-            echo "Message: " . $mail['message'] . "\n";
+            echo "To: " . "{$mail->forename} {$mail->surname} <{$mail->email}>" . "\n";
+            echo "Subject: " . "Notification from Billbot" . "\n";
+            $message = $this->generate_preview_message($mail->bills);
+            echo "Message: " . $message . "\n";
         }
     }
 
-    private function build_emails()
+    private function generate_preview_message($bills)
     {
-        // Loop over the users
+        $message = "\n\n";
+        foreach ($bills as $bill) {
+            $message .= "$bill->title \n";
+            for( $i=0; $i < strlen($bill->title); $i++ ){
+                $message .= "-";
+            } 
+            $message .= "\n";
+            $message .= "Recurrence:  " . $bill->recurrence . "\n";
+            $message .= "Renews on:   " . $bill->renews_on . "\n";
+            if( $bill->comments ) $message .=   "Comments:     $bill->comments\n\n";
+        }
+        return $message;
+    }
+
+    private function get_users_with_bills()
+    {
         $this->users = DB::table('users')->get();
-        foreach ($this->users as $user) {
+        $this->emails = array();
+        foreach ($this->users as $key=>$user) {
 
             // Find available bills for the user
-            $bills = DB::table('bills')->where_user_id(1)->where_send_reminder(true)->get();
+            $bills = DB::table('bills')->where_user_id($user->id)->where_send_reminder(true)->get();
             
             // Sort bills by due date and add 'due_in'
-            $bills = Bill::sort_bills_by_date($bills);
-
-            // Build the email
-            $name = $user->forename ? $user->forename." ".$user->surname : $user->username;
-            $to = "{$name} <{$user->email}>";
-            $subject = "Notification from BIllbot";
-             $message = "Hi there,\n\n";
-            $message .= "It looks like you have " . count($bills) . " " . Str::plural('bill', count($bills)) . " coming up:\n\n";
+            $user->bills = Bill::sort_bills_by_date($bills);
             
-            // Loop over relevant bills and build a list
-            foreach ($bills as $bill) {
-                $message .= "$bill->title \n";
-                for( $i=0; $i < strlen($bill->title); $i++ ){
-                    $message .= "-";
-                } 
-                $message .= "\n";
-                $message .= "Recurrence:   " . $bill->recurrence . "\n";
-                $message .= "Renews on: " . $bill->renews_on . "\n";
-                if( $bill->comments ) $message .=   "Comments:     $bill->comments\n\n";
+            // Unset any bills that don't have a reminder today
+            foreach ($user->bills as $key => $bill) {
+                if( $bill->reminder != 0 ){
+                    unset($user->bills[$key]);
+                }
             }
 
-            if( count($bills) > 0 ){
-                array_push($this->emails, array(
-                    'to'       => $to,
-                    'subject'  => $subject,
-                    'message'  => $message,
-                ));
+            // Populate the users array with users that do have notifiable bills
+            if( count($user->bills) > 0 ){
+                array_push($this->emails, $user);
             }
         }
-        return $emails;
+        return $this->emails;
     }
 }
