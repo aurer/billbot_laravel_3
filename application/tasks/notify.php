@@ -44,11 +44,6 @@ class Notify_Task{
 
     private function build_emails()
     {
-        Request::set_env('local');
-
-        DB::table('users')->get();
-        return; 
-
         // Loop over the users
         $this->users = DB::table('users')->get();
         foreach ($this->users as $user) {
