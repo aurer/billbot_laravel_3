@@ -21,7 +21,7 @@ class Notify_Task{
                     $headers .= "Content-type: text/html\r\n";
                     $h1 = "Just a little reminder";
                     $h2 = "Here are you upcoming bills";
-                    $message = View::make('emails.reminder')->with( array('message'=>$email['message'], 'h1'=>$h1, 'h2'=>$h2));
+                    $message = View::make('emails.reminder')->with( array('bills'=>$this->emails, 'message'=>$email['message'], 'h1'=>$h1, 'h2'=>$h2));
                     mail($email['to'], $email['subject'], $message, $headers);
                 }
                 echo "Sent " . count($this->emails) . " " . Str::plural('notification email', count($this->emails)) . ".\n";
